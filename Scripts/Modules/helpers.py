@@ -24,7 +24,6 @@ import re
 import subprocess
 import unicodedata
 
-
 #####################
 # GLOBALS
 #####################

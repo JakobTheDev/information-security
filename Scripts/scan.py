@@ -35,7 +35,7 @@ devnull = open(os.devnull, 'w')
 # FUNCTIONS
 ##################### 
 def main():
-     # Print messages
+    # Print messages
     helpers.print_script_message(name, version, tagline)
     helpers.print_task_positive('Hold tight...')
 

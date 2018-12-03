@@ -25,6 +25,7 @@ from Modules import helpers
 #####################
 repositories = [
     'https://github.com/adamcaudill/EquationGroupLeak.git',
+    'https://github.com/codingo/Reconnoitre.git',
     'https://github.com/danielmiessler/SecLists.git',
     'https://github.com/misterch0c/shadowbroker.git'
 ]

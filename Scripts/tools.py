@@ -24,10 +24,9 @@ from Modules import helpers
 # REPOSITORIES
 #####################
 repositories = [
-    'https://github.com/adamcaudill/EquationGroupLeak.git',
     'https://github.com/codingo/Reconnoitre.git',
     'https://github.com/danielmiessler/SecLists.git',
-    'https://github.com/misterch0c/shadowbroker.git'
+    'https://github.com/superkojiman/onetwopunch.git'
 ]
 
 #####################

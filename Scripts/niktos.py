@@ -48,17 +48,17 @@ def main():
 
                 # Force SSL on port 443
                 if (port == '80'):
-                    output_nikto = subprocess.check_output(['nikto', '-host', target], universal_newlines=True)
+                    output_nikto = subprocess.check_output(['nikto', '-host', target, '-ask', 'auto'], universal_newlines=True)
                 else:
-                    output_nikto = subprocess.check_output(['nikto', '-host', target, '-ssl'], universal_newlines=True)
+                    output_nikto = subprocess.check_output(['nikto', '-host', target, '-ask', 'auto', '-ssl'], universal_newlines=True)
 
                 # Print the output to terminal, if selected
                 if (args.print): 
                     print(output_nikto)
 
                 # Write the nikto output to file
-                target = target.replace('.','-')
-                nikto_outfile = open('nikto/' + target + '-' + port + '.txt', 'w')
+                target_dash = target.replace('.','-')
+                nikto_outfile = open('nikto/' + target_dash + '-' + port + '.txt', 'w')
                 nikto_outfile.write(str(output_nikto))
                 nikto_outfile.close()
 

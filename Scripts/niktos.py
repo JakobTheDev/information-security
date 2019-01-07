@@ -41,7 +41,12 @@ def main():
             target = line.rstrip('\n')
 
             # Capture nikto output
+            helpers.print_task_positive('Beginning scan of ' + target)
             output_nikto = subprocess.check_output(['nikto', '-host', target], universal_newlines=True)
+
+            # Print the output to terminal, if selected
+            if (args.print): 
+                print(output_nikto)
 
             # Write the nikto output to file
             target = target.replace('.','-')
@@ -55,6 +60,7 @@ def main():
 # Set up command line argument parsing
 parser = argparse.ArgumentParser(description='A simple python scrupt which runs nikto against a list of hosts.')
 parser.add_argument('targets', help="A file containing a list of hostname/IP:port")
+target_group.add_argument('-p', '--print', help='Print the output of each scan.')
 # Parse the supplied arguments
 args = parser.parse_args()
 

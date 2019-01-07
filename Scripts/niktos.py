@@ -60,7 +60,7 @@ def main():
 # Set up command line argument parsing
 parser = argparse.ArgumentParser(description='A simple python scrupt which runs nikto against a list of hosts.')
 parser.add_argument('targets', help="A file containing a list of hostname/IP:port")
-target_group.add_argument('-p', '--print', help='Print the output of each scan.')
+parser.add_argument('-p', '--print', help='Print the output of each scan.')
 # Parse the supplied arguments
 args = parser.parse_args()
 

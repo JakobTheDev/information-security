@@ -169,6 +169,7 @@ def scan_ssl():
             for line in file:
                 # Strip newlines
                 hostname = line.rstrip('\n')
+                print(hostname)
 
                 # Capture the sslscan output
                 output_sslscan = subprocess.check_output(['sslscan', hostname], universal_newlines=True)

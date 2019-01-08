@@ -65,7 +65,7 @@ def main():
 
                 # Write the nikto output to file
                 target_dash = target.replace('.','-')
-                nikto_outfile = open('nikto/scan-output' + target_dash + '-' + port + '.txt', 'w')
+                nikto_outfile = open('nikto/scan-output/' + target_dash + '-' + port + '.txt', 'w')
                 nikto_outfile.write(str(output_nikto))
                 nikto_outfile.close()
 

@@ -65,7 +65,7 @@ def main():
 
                 # Write the nikto output to file
                 target_dash = target.replace('.','-')
-                nikto_outfile = open('nikto/' + target_dash + '-' + port + '.txt', 'w')
+                nikto_outfile = open('nikto/scan-output' + target_dash + '-' + port + '.txt', 'w')
                 nikto_outfile.write(str(output_nikto))
                 nikto_outfile.close()
 
@@ -87,14 +87,21 @@ def interpret(target, port, output):
     # Process the scan output
     # Server header
     if (output.find('Server: No banner retrieved') == -1):
-        helpers.print_subtask_negative('Server header')
+        helpers.print_subtask_negative('Header found: Server')
         vuln_file = open('nikto/vulnerabilities/header-server.txt', 'a')
         vuln_file.write(target + ':' + port + '\n')
         vuln_file.close()
 
     # X-Powered-By header
     if (output.find('Retrieved x-powered-by header:') != -1):
-        helpers.print_subtask_negative('X-Powered-By header')
+        helpers.print_subtask_negative('Header found: X-Powered-By')
+        vuln_file = open('nikto/vulnerabilities/header-x-powered-by.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # X-AspNet-Version header
+    if (output.find('Retrieved x-aspnet-version header:') != -1):
+        helpers.print_subtask_negative('Header found: X-AspNet-Version')
         vuln_file = open('nikto/vulnerabilities/header-x-powered-by.txt', 'a')
         vuln_file.write(target + ':' + port + '\n')
         vuln_file.close()
@@ -141,6 +148,12 @@ def interpret(target, port, output):
         vuln_file.write(target + ':' + port + '\n')
         vuln_file.close()
 
+    # Cookie missing http attribute
+    if (output.find('created without the httponly flag') != -1):
+        helpers.print_subtask_negative('Cookie missing attribute: HttpOnly')
+        vuln_file = open('nikto/vulnerabilities/missing-cookie-attribute-httponly.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
 
 #####################
 # ARGUMENT PARSING

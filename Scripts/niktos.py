@@ -80,11 +80,64 @@ def interpret(target, port, output):
     # Print output
     helpers.print_subtask_positive("Interpreting results...")
 
+    # Return if no results
+    if (output.find("0 host(s) tested") != -1):
+        return
+
     # Process the scan output
     # Server header
-    if (output.find('Server:') != -1):
+    if (output.find('Server: No banner retrieved') == -1):
         helpers.print_subtask_negative('Server header')
-        vuln_file = open('nikto/vulnerabilities/server-headers.txt', 'a')
+        vuln_file = open('nikto/vulnerabilities/header-server.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # X-Powered-By header
+    if (output.find('Retrieved x-powered-by header:') != -1):
+        helpers.print_subtask_negative('X-Powered-By header')
+        vuln_file = open('nikto/vulnerabilities/header-x-powered-by.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # X-Frame-Options header
+    if (output.find('The anti-clickjacking X-Frame-Options header is not present.') != -1):
+        helpers.print_subtask_negative('Missing header: X-Frame-Options')
+        vuln_file = open('nikto/vulnerabilities/missing-header-x-frame-options.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # X-XSS-Protection header
+    if (output.find('The X-XSS-Protection header is not defined.') != -1):
+        helpers.print_subtask_negative('Missing header: X-XSS-Protection')
+        vuln_file = open('nikto/vulnerabilities/missing-header-x-xss-protection.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # X-Content-Type-Options header
+    if (output.find('The X-Content-Type-Options header is not set.') != -1):
+        helpers.print_subtask_negative('Missing header: X-Content-Type-Options')
+        vuln_file = open('nikto/vulnerabilities/missing-header-x-content-type-options.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # Strict-Transport-Security header
+    if (output.find('The site uses SSL and the Strict-Transport-Security HTTP header is not defined.') != -1):
+        helpers.print_subtask_negative('Missing header: Strict-Transport-Security')
+        vuln_file = open('nikto/vulnerabilities/missing-header-strict-transport-security.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # Cookie missing secure attribute
+    if (output.find('created without the secure flag') != -1):
+        helpers.print_subtask_negative('Cookie missing attribute: Secure')
+        vuln_file = open('nikto/vulnerabilities/missing-cookie-attribute-secure.txt', 'a')
+        vuln_file.write(target + ':' + port + '\n')
+        vuln_file.close()
+
+    # Cookie missing secure attribute
+    if (output.find('created without the secure flag') != -1):
+        helpers.print_subtask_negative('Cookie missing attribute: Secure')
+        vuln_file = open('nikto/vulnerabilities/missing-cookie-attribute-secure.txt', 'a')
         vuln_file.write(target + ':' + port + '\n')
         vuln_file.close()
 

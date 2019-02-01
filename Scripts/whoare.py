@@ -7,8 +7,8 @@
 #  hostnames.                                                                   #
 #                                                                               #
 #  Author: Jakob Pennington                                                     #
-#  Version: 1.0.0                                                               #
-#  Last modified: 05-03-2018                                                    #
+#  Version: 1.0.1                                                               #
+#  Last modified: 01-02-2019                                                    #
 #                                                                               #
 #################################################################################
 
@@ -17,7 +17,6 @@
 ##################### 
 import argparse
 import os
-import ptvsd
 import re
 import subprocess
 import sys
@@ -27,25 +26,10 @@ import time
 from Modules import helpers
 
 #####################
-# GLOBALS
-#####################
-DEBUGGING_ENABLED = False
-DEBUGGING_PORT = 3000
-DEUGGING_IP = '127.0.0.1'
-DEBUGGING_PASSWORD = ''
-
-#####################
 # FUNCTIONS
 #####################
 def main():
-    if(DEBUGGING_ENABLED):
-        # Allow other computers to attach to ptvsd at this IP address and port, using the secret
-        ptvsd.enable_attach(DEBUGGING_PASSWORD, address = (DEUGGING_IP, DEBUGGING_PORT))
-
-        # Pause the program until a remote debugger is attached
-        ptvsd.wait_for_attach()
-
-     # Check that targets have been supplied
+    # Check that targets have been supplied
     if (not args.host and not args.list):
         sys.exit('You must supply a target or list of targets. See help (-h) for more details.')
 

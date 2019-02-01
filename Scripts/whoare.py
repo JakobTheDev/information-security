@@ -91,7 +91,7 @@ def process_hostnames():
 
 
 def scan_dns():
-    helpers.print_heading('Beginning DNS scanning...')
+    helpers.print_task_positive('Beginning DNS scanning...')
 
     # Create directories
     subprocess.run(['mkdir', 'dns'])
@@ -145,7 +145,7 @@ def scan_dns():
 
 
 def scan_the_harvester():
-        helpers.print_heading('Beginning theharvester Scanning...')
+        helpers.print_print_task_positiveheading('Beginning theharvester Scanning...')
 
         # Create a new directory for output files
         subprocess.run(['mkdir', 'theharvester'])
@@ -167,7 +167,7 @@ def scan_the_harvester():
 
 
 def scan_whois():
-        helpers.print_heading('Beginning whois Scanning...')
+        helpers.print_task_positive('Beginning whois Scanning...')
 
         # Create a new directory for output files
         subprocess.run(['mkdir', 'whois'])

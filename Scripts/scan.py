@@ -83,7 +83,7 @@ def scan_ssl():
                 scan_ssl_host(line)
 
 
-def scan_ssl_host(line)
+def scan_ssl_host(line):
     # Strip newlines
     hostname = line.rstrip('\n')
     print(hostname)

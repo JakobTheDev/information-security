@@ -43,6 +43,7 @@ def print_script_message(script, version, tagline):
     print('')
 
 def print_heading(heading):
+    print()
     print('#################################')
     print('# ' + heading)
     print('#################################')

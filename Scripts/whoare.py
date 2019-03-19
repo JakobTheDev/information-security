@@ -145,7 +145,7 @@ def scan_dns():
 
 
 def scan_the_harvester():
-        helpers.print_print_task_positiveheading('Beginning theharvester Scanning...')
+        helpers.print_heading('Beginning theharvester Scanning...')
 
         # Create a new directory for output files
         subprocess.run(['mkdir', 'theharvester'])
@@ -191,7 +191,7 @@ def scan_whois():
 # ARGUMENT PARSING
 #####################
 # Set up command line argument parsing
-parser = argparse.ArgumentParser(description='A simple python Script which lets you do passive information gathering on a list of hosts')
+parser = argparse.ArgumentParser(description='A simple python Script which lets you do passive information gathering on a list of hosts.')
 # Targets
 target_group = parser.add_argument_group("Targets")
 target_group.add_argument('-H', '--host', help='A single target hostname.')

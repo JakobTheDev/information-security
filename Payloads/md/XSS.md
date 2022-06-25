@@ -1,6 +1,10 @@
 # Markdown XSS Payloads
 
+### NOTE : DOESN'T WORK ON GITHUB...
+
+
 ## Links
+
 
 ```markdown
 [Basic](javascript:alert('Basic'))

